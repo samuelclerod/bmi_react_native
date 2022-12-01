@@ -29,7 +29,7 @@ export function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Calculadora de IMC</Text>
+      {/* <Text style={styles.title}>Calculadora de IMC</Text> */}
       <Card>
         <View style={styles.inputWrapper}>
           <Text style={styles.label}>Peso</Text>
