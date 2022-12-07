@@ -3,9 +3,14 @@ import React from "react";
 import { Card } from "../components/Card";
 import { colors } from "../constants";
 import Situation from "../components/Situation";
+import history from "../storage/history";
 
 export function Result({ navigation, route }) {
   const { imc } = route.params;
+
+  history.getData().then((array) => {
+    console.log(array);
+  });
 
   return (
     <View style={styles.container}>

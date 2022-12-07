@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import { colors } from "../constants";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
+import { getSituation } from "../utils";
+import history from "../storage/history";
 
 export function Home({ navigation }) {
   const [weight, setWeight] = useState("");
@@ -13,7 +15,7 @@ export function Home({ navigation }) {
     setHeight("");
   };
 
-  const calculate = () => {
+  const calculate = async () => {
     const w = parseFloat(weight);
     const h = parseFloat(height) / 100;
 
@@ -23,6 +25,10 @@ export function Home({ navigation }) {
       return;
     }
     const result = w / (h * h);
+
+    const { text: situation } = getSituation(result);
+
+    await history.store({ imc: result, situation });
 
     navigation.navigate("Result", { imc: result });
   };
